@@ -12,9 +12,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="postgres-transactions" target="1.8" />
-      <module name="postgres-transactions-jdbc" target="1.8" />
-      <module name="postgres-transactions-ormlite" target="1.8" />
+      <module name="postgres-transactions" target="15" />
+      <module name="postgres-transactions-jdbc" target="15" />
+      <module name="postgres-transactions-ormlite" target="15" />
       <module name="postgres-transactions-spring" target="15" />
     </bytecodeTargetLevel>
   </component>
