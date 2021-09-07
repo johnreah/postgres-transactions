@@ -1,4 +1,4 @@
-package com.johnreah;
+package com.johnreah.postgres.jdbc;
 
 public class App 
 {
