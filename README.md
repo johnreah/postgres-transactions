@@ -1,7 +1,11 @@
 # Postgres Transactions
 
 This is a set of demo projects intended to illustrate and compare some different ways
-of implementing transactions in a Java application with a PostgreSQL database.
+of implementing transactions in a Java application with a PostgreSQL database. These methods
+include:
+- Plain JDBC
+- ORMLite
+- Spring Data JPA
 
 The code has been kept as simple as possible to illustrate the principles involved, but it
 it does include concepts such as Entities, Repositories/DAOs and Service classes. The
