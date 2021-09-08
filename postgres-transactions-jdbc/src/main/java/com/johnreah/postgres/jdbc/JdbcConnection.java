@@ -1,5 +1,6 @@
 package com.johnreah.postgres.jdbc;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
