@@ -16,7 +16,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Postgres transaction tests</name>
+    <name>Postgres transaction tests (parent)</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,6 +32,9 @@
         <module>postgres-transactions-ormlite</module>
         <module>postgres-transactions-spring</module>
     </modules>
+
+    <dependencies>
+    </dependencies>
 
     <build>
         <pluginManagement>

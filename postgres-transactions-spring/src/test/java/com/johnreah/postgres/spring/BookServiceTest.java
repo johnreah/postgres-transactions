@@ -38,13 +38,27 @@ public class BookServiceTest {
     }
 
     @Test
+    public void givenUniqueConstraint_whenDupesSavedWithoutTransaction_thenNoRollback() {
+        assertEquals(0, bookService.count(), "Table should start empty");
+
+        assertThrows(DataIntegrityViolationException.class, () -> {
+            Book book1 = new Book("Book One");
+            Book book2 = new Book("Book One");
+            bookService.addMultipleBooks_NonTransactional(book1, book2);
+            fail("should never get here");
+        }, "expect exception on save");
+
+        assertEquals(1, bookService.count(), "Table should have 1 book because no rollback");
+    }
+
+    @Test
     public void givenUniqueConstraint_whenDupesSavedWithinTransaction_thenRollback() {
         assertEquals(0, bookService.count(), "Table should start empty");
 
         assertThrows(DataIntegrityViolationException.class, () -> {
             Book book1 = new Book("Book One");
             Book book2 = new Book("Book One");
-            bookService.addBooks(book1, book2);
+            bookService.addMultipleBooks_Transactional(book1, book2);
             fail("should never get here");
         }, "expect exception on save");
 
