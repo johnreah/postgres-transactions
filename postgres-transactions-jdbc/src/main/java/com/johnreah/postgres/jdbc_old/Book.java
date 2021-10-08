@@ -1,4 +1,4 @@
-package com.johnreah.postgres.jdbc;
+package com.johnreah.postgres.jdbc_old;
 
 public class Book {
     private int id;

@@ -1,4 +1,6 @@
-package com.johnreah.postgres.jdbc;
+package com.johnreah.postgres.jdbc_old;
+
+import com.johnreah.postgres.jdbc.ConnectionPool;
 
 import java.sql.*;
 

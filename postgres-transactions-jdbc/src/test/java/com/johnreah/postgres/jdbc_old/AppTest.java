@@ -1,4 +1,4 @@
-package com.johnreah.postgres.jdbc;
+package com.johnreah.postgres.jdbc_old;
 
 import org.junit.jupiter.api.Test;
 

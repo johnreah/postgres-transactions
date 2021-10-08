@@ -1,5 +1,6 @@
-package com.johnreah.postgres.jdbc;
+package com.johnreah.postgres.jdbc_old;
 
+import com.johnreah.postgres.jdbc.ConnectionPool;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
