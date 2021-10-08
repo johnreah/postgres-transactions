@@ -1,4 +1,4 @@
-package com.johnreah.postgres.ormlite;
+package com.johnreah.postgres.ormlite_old;
 
 import com.j256.ormlite.dao.Dao;
 
