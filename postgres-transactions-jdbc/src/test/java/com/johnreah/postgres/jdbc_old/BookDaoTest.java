@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookDaoTest {
 
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/transactiontest";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/postgres_transactions_jdbc";
     private static final String JDBC_USER = "postgres";
     private static final String JDBC_PASSWORD = "postgres";
 

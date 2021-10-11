@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ORMLiteIntegrationTest {
 
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/transactiontest";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/postgres_transactions_ormlite";
     private static final String JDBC_USER = "postgres";
     private static final String JDBC_PASSWORD = "postgres";
 
