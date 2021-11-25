@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.5.4</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
 
     <groupId>com.johnreah</groupId>
     <artifactId>postgres-transactions</artifactId>
@@ -17,6 +17,13 @@
     <packaging>pom</packaging>
 
     <name>Postgres transaction tests (parent)</name>
+
+    <modules>
+        <module>postgres-transactions-jdbc</module>
+        <module>postgres-transactions-ormlite</module>
+        <module>postgres-transactions-spring</module>
+<!--        <module>postgres-transactions-cdi</module>-->
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,20 +33,6 @@
         <postgres.driver.version>42.2.23</postgres.driver.version>
         <jupiter.version>5.7.2</jupiter.version>
     </properties>
-
-    <modules>
-        <module>postgres-transactions-jdbc</module>
-        <module>postgres-transactions-ormlite</module>
-        <module>postgres-transactions-spring</module>
-    </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-<!--            <version></version>-->
-        </dependency>
-    </dependencies>
 
     <build>
         <pluginManagement>

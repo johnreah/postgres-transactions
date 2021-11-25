@@ -2,6 +2,7 @@ package com.johnreah.postgres.spring.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,7 @@ public class Order {
     private String customer;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
-    private Set<Line> lines;
+    private Set<Line> lines = new HashSet<>();
 
     public Order() {
     }
