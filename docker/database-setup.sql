@@ -10,3 +10,5 @@ create table lines(id serial primary key, orderId int, productCode varchar(100),
 create database postgres_transactions_ormlite;
 
 create database postgres_transactions_spring;
+
+create database postgres_transactions_cdi;
