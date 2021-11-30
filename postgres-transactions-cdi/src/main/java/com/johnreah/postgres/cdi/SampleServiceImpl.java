@@ -1,34 +1,63 @@
 package com.johnreah.postgres.cdi;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-@Stateless
-@Transactional
+@ApplicationScoped
 public class SampleServiceImpl implements SampleService {
 
-    @PersistenceContext
-    EntityManager entityManager;
+    @Inject
+    SampleDAO sampleDAO;
 
     @Override
     public int returnFive() {
-        return 5;
+        return sampleDAO.returnFive();
     }
 
     @Override
-    public long createSampleEntity(int intValue, String stringValue) {
-        System.out.println("Transaction active: " + entityManager.getTransaction().isActive());
-        SampleEntity sampleEntity = new SampleEntity(intValue, stringValue);
-        entityManager.persist(sampleEntity);
-        return sampleEntity.getId().longValue();
+    public long createSample(int intValue, String stringValue) {
+        return sampleDAO.createSample(intValue, stringValue);
     }
 
     @Override
-    public String getStringValueFor(long id) {
-        return entityManager.createQuery("select e.stringValue from SampleEntity e where e.id = :id", String.class)
-                .setParameter("id", id)
-                .getSingleResult();
+    @Transactional
+    public List<Long> createSamplesTransactional(Map<Integer, String> samples) {
+        List<Long> sampleIds = new ArrayList<>();
+        for (int i: samples.keySet()) {
+            long id = sampleDAO.createSample(i, samples.get(i));
+            sampleIds.add(id);
+        }
+        return sampleIds;
+    }
+
+    @Override
+    @Transactional(Transactional.TxType.NEVER)
+    public List<Long> createSamplesNonTransactional(Map<Integer, String> samples) {
+        List<Long> sampleIds = new ArrayList<>();
+        for (int i: samples.keySet()) {
+            long id = sampleDAO.createSample(i, samples.get(i));
+            sampleIds.add(id);
+            System.out.println("SampleCount: " + sampleDAO.countAll());
+        }
+        return sampleIds;
+    }
+
+    @Override
+    public String getStringFromId(long id) {
+        return sampleDAO.getStringFromId(id);
+    }
+
+    @Override
+    public long countSamples() {
+        return sampleDAO.countAll();
+    }
+
+    @Override
+    public void deleteAllSamples() {
+        sampleDAO.deleteAll();
     }
 }

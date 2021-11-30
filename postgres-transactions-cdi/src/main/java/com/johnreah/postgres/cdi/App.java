@@ -7,24 +7,28 @@ import java.lang.reflect.Field;
 public class App {
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException {
+        new App().run();
+    }
 
-        // Application-managed entity management
-        EntityManager entityManager = Persistence.createEntityManagerFactory("postgres_transactions_cdi").createEntityManager();
+    private void run() throws InstantiationException, IllegalAccessException, NoSuchFieldException {
 
-        // Inject entity manager
-        SampleService sampleService;
-        sampleService = SampleServiceImpl.class.newInstance();
-        Field field = sampleService.getClass().getDeclaredField("entityManager");
+        EntityManager entityManager = Persistence
+                .createEntityManagerFactory("postgres_transactions_cdi")
+                .createEntityManager();
+
+        SampleDAO sampleDAO = SampleDAO.class.newInstance();
+        Field field = sampleDAO.getClass().getDeclaredField("entityManager");
         field.setAccessible(true);
-        field.set(sampleService, entityManager);
+        field.set(sampleDAO, entityManager);
 
-        // Do something with data
-        entityManager.getTransaction().begin();
-        Long id = sampleService.createSampleEntity(111, "one-one-one");
-        String s = sampleService.getStringValueFor(id);
-        entityManager.getTransaction().commit();
+        SampleService sampleService = SampleServiceImpl.class.newInstance();
+        field = sampleService.getClass().getDeclaredField("sampleDAO");
+        field.setAccessible(true);
+        field.set(sampleService, sampleDAO);
 
-        System.out.println("Got: " + s);
+        sampleService.deleteAllSamples();
+        sampleService.createSample(111, "one");
+        System.out.println("Count: " + sampleService.countSamples());
     }
 
 }

@@ -1,15 +1,16 @@
 package com.johnreah.postgres.cdi;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class SampleEntity {
     @Id
     @GeneratedValue
     private Long id;
+
     private int intValue;
+
+    @Column(unique = true)
     private String stringValue;
 
     public SampleEntity() {}

@@ -16,6 +16,7 @@
         <module>postgres-transactions-ormlite</module>
         <module>postgres-transactions-spring</module>
         <module>postgres-transactions-cdi</module>
+        <module>postgres-transactions-cdi-jta-helper</module>
     </modules>
 
     <properties>

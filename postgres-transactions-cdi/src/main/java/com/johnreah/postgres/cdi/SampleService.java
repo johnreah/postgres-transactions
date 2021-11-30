@@ -1,12 +1,22 @@
 package com.johnreah.postgres.cdi;
 
+import java.util.List;
+import java.util.Map;
+
 public interface SampleService {
 
         int returnFive();
 
-        long createSampleEntity(int intValue, String stringValue);
+        long createSample(int intValue, String stringValue);
 
-        String getStringValueFor(long id);
+        List<Long> createSamplesTransactional(Map<Integer, String> sampleEntities);
 
+        List<Long> createSamplesNonTransactional(Map<Integer, String> sampleEntities);
+
+        String getStringFromId(long id);
+
+        long countSamples();
+
+        void deleteAllSamples();
 
     }
