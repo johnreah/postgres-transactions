@@ -12,11 +12,11 @@
     <name>Postgres transaction tests (parent)</name>
 
     <modules>
-        <module>postgres-transactions-jdbc</module>
-        <module>postgres-transactions-ormlite</module>
-        <module>postgres-transactions-spring</module>
-        <module>postgres-transactions-cdi</module>
-        <module>postgres-transactions-cdi-jta-helper</module>
+        <module>postgres-transactions-1-jdbc</module>
+        <module>postgres-transactions-2-ormlite</module>
+        <module>postgres-transactions-3-spring</module>
+        <module>postgres-transactions-4-cdi</module>
+        <module>postgres-transactions-4a-cdi-jta-helper</module>
     </modules>
 
     <properties>

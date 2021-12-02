@@ -3,7 +3,6 @@ import com.johnreah.cdi_jta_helper.persistence.H2DataSourceWrapper;
 import com.johnreah.cdi_jta_helper.persistence.H2EntityManagerFactoryProducer;
 import com.johnreah.postgres.cdi.EntityManagerProducer;
 import com.johnreah.postgres.cdi.SampleDAO;
-import com.johnreah.postgres.cdi.SampleService;
 import com.johnreah.postgres.cdi.SampleServiceImpl;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.junit5.WeldInitiator;
@@ -12,8 +11,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.spi.InjectionPoint;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  * extension for setting up the container

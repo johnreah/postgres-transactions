@@ -31,7 +31,7 @@ public class SeMemoryContextFactory extends MemoryContextFactory {
 		if(bean == null || !bm.isNormalScope(bean.getScope())) {
 			throw new NamingException("no jndi-context found - managedBean not initialised!");
 		}
-		
+
 		return (Context)SeMemoryContext.class.cast(
 				bm.getReference(bean,SeMemoryContext.class,bm.createCreationalContext(null))
 				);

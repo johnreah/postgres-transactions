@@ -1,5 +1,4 @@
 import com.arjuna.ats.arjuna.coordinator.TransactionReaper;
-import com.johnreah.cdi_jta_helper.persistence.H2DataSourceWrapper;
 import com.johnreah.postgres.cdi.SampleEntity;
 import com.johnreah.postgres.cdi.SampleService;
 import org.junit.jupiter.api.*;
@@ -7,7 +6,6 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

@@ -13,7 +13,7 @@
         <relativePath/>
     </parent>
 
-    <artifactId>postgres-transactions-spring</artifactId>
+    <artifactId>postgres-transactions-3-spring</artifactId>
 
     <properties>
     </properties>
