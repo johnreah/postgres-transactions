@@ -12,3 +12,5 @@ create database postgres_transactions_ormlite;
 create database postgres_transactions_spring;
 
 create database postgres_transactions_cdi;
+
+create database postgres_transactions_deltaspike;
