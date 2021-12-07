@@ -7,8 +7,6 @@ import org.apache.deltaspike.core.api.provider.BeanProvider;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
 
 public class App {
 

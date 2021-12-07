@@ -1,10 +1,13 @@
 package com.johnreah.postgres.cdi;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+@Dependent
 @Transactional
 public class SampleDAO {
 
