@@ -14,9 +14,10 @@
     <name>Postgres with deltaspike</name>
 
     <properties>
+        <eclipselink.version>2.7.9</eclipselink.version>
         <deltaspike.version>1.9.5</deltaspike.version>
         <weld.version>3.1.8.Final</weld.version>
-<!--        <weld.version>2.4.8.Final</weld.version>-->
+        <!--        <weld.version>2.4.8.Final</weld.version>-->
         <junit-platform.version>5.8.2</junit-platform.version>
     </properties>
 
@@ -102,7 +103,7 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
-            <version>2.7.9</version>
+            <version>${eclipselink.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.eclipse.persistence</groupId>
@@ -117,12 +118,12 @@
             <version>${postgres.driver.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-engine</artifactId>-->
-<!--            <version>${jupiter.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.jupiter</groupId>-->
+        <!--            <artifactId>junit-jupiter-engine</artifactId>-->
+        <!--            <version>${jupiter.version}</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -147,6 +148,54 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <artifactId>eclipselink-staticweave-maven-plugin</artifactId>
+                <groupId>au.com.alderaan</groupId>
+                <version>1.0.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>weave</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <logLevel>ALL</logLevel>
+<!--                            <target>${project.build.directory}/generated-sources/staticweave</target>-->
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>eclipselink</artifactId>
+                        <version>${eclipselink.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>build-helper-maven-plugin</artifactId>-->
+<!--                <version>3.2.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>add-source</id>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>add-source</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <sources>-->
+<!--                                <source>${project.build.directory}/generated-sources</source>-->
+<!--                            </sources>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+        </plugins>
+
     </build>
 
 </project>

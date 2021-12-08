@@ -18,6 +18,10 @@
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+<!--            <property name="eclipselink.weaving" value="static"/>-->
+<!--            <property name="eclipselink.session-name" value="appname-session"/>-->
+<!--            <property name="eclipselink.sessions-xml" value="sessions.xml"/>-->
         </properties>
 
     </persistence-unit>
