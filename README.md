@@ -6,6 +6,7 @@ include:
 - Plain JDBC
 - ORMLite
 - Spring Data JPA
+- Apache DeltaSpike
 
 The code has been kept as simple as possible to illustrate the principles involved, but it
 it does include concepts such as Entities, Repositories/DAOs and Service classes. The
