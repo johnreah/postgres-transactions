@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -76,21 +77,17 @@ public class AccountRepositoryTest {
 
     @Test
     public void givenAccountTypeAndAccounts_whenAccountTypeFetched_thenAccountsNotPopulated() {
-        AccountTypeEntity accountType = accountTypeRepository.saveAndFlush(new AccountTypeEntity("accountType", "accountType", null));
-        AccountEntity account1 = accountRepository.saveAndFlush(new AccountEntity(accountType, "account1", 0.0, Date.from(Instant.now()), "account1"));
-        AccountEntity account2 = accountRepository.saveAndFlush(new AccountEntity(accountType, "account2", 0.0, Date.from(Instant.now()), "account2"));
-        AccountEntity account3 = accountRepository.saveAndFlush(new AccountEntity(accountType, "account3", 0.0, Date.from(Instant.now()), "account3"));
+        AccountTypeEntity accountType = accountTypeRepository.save(new AccountTypeEntity("accountType", "accountType", null));
+        AccountEntity account1 = accountRepository.save(new AccountEntity(accountType, "account1", 0.0, Date.from(Instant.now()), "account1"));
+        AccountEntity account2 = accountRepository.save(new AccountEntity(accountType, "account2", 0.0, Date.from(Instant.now()), "account2"));
+        AccountEntity account3 = accountRepository.save(new AccountEntity(accountType, "account3", 0.0, Date.from(Instant.now()), "account3"));
+        assertNotEquals("Saved AccountType ahould have an id", Long.valueOf(0), accountType.getId());
+        assertNotEquals("Saved Account ahould have an id", Long.valueOf(0), account1.getId());
+        assertEquals("AccountType lazy-load of child accounts can't work yet because we haven't added them", 0, accountType.getAccounts().size());
 
-        AccountTypeEntity accountTypeFetched = accountTypeRepository.findBy(accountType.getId());
-        assertNotNull("Should have found an AccountType", accountTypeFetched);
-        assertEquals("AccountType should have been found", "accountType", accountTypeFetched.getDescription());
-        assertNotNull("AccountType's accounts should be populated", accountTypeFetched.getAccounts());
-        accountTypeFetched.getAccounts().stream().forEach((AccountEntity ae) -> {System.out.println("AE: " + ae.getReference());});
-        Set<AccountEntity> accountSet = accountTypeFetched.getAccounts();
-        for (AccountEntity accountEntity: accountSet) {
-            System.out.println("ae: " + accountEntity.getId());
-        }
-        assertEquals("AccountType doesn't fetch one-to-many dependants", 0, accountTypeFetched.getAccounts().size());
+        accountTypeRepository.saveAndFlushAndRefresh(accountType);
+        accountType.getAccounts().stream().forEach((AccountEntity ae) -> {System.out.println("AE: " + ae.getReference());});
+        assertEquals("AccountType child accounts should be populated after refresh", 3, accountType.getAccounts().size());
     }
 
     @Test
