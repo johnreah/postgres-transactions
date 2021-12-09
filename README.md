@@ -6,6 +6,7 @@ include:
 - Plain JDBC
 - ORMLite
 - Spring Data JPA
+- CDI (Weld) and JTA (Narayana) to emulate WildFly but allow unit testing in Java SE
 - Apache DeltaSpike
 
 The code has been kept as simple as possible to illustrate the principles involved, but it
