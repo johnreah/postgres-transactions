@@ -8,6 +8,9 @@ import org.apache.deltaspike.core.api.provider.BeanProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 
+/**
+ * Run with -javaagent:<some-path>/eclipselink-2.7.9.jar to enable dynamic weaving
+ */
 public class App {
 
     public static void main(String[] args) {
