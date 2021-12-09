@@ -25,4 +25,27 @@
         </properties>
 
     </persistence-unit>
+
+    <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>com.johnreah.postgres.deltaspike.SampleEntity</class>
+        <class>com.johnreah.postgres.deltaspike.AccountTypeEntity</class>
+        <class>com.johnreah.postgres.deltaspike.AccountEntity</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/test"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+
+            <property name="eclipselink.weaving" value="true"/>
+            <property name="eclipselink.weaving.lazy" value="true"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+        </properties>
+
+    </persistence-unit>
+
 </persistence>
