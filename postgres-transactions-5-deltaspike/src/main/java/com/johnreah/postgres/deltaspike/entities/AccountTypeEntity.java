@@ -1,4 +1,6 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.entities;
+
+import com.johnreah.postgres.deltaspike.entities.AccountEntity;
 
 import java.util.HashSet;
 import java.util.Set;

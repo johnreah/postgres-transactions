@@ -1,11 +1,14 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.services;
 
+import com.johnreah.postgres.deltaspike.entities.AccountEntity;
+import com.johnreah.postgres.deltaspike.entities.AccountTypeEntity;
+import com.johnreah.postgres.deltaspike.repositories.AccountRepository;
+import com.johnreah.postgres.deltaspike.repositories.AccountTypeRepository;
 import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.inject.Inject;
 import java.sql.Date;
 import java.time.Instant;
-import java.util.List;
 import java.util.UUID;
 
 public class BankingService {

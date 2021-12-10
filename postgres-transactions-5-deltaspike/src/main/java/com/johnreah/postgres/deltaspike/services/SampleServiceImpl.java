@@ -1,5 +1,7 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.services;
 
+import com.johnreah.postgres.deltaspike.repositories.SampleDAO;
+import com.johnreah.postgres.deltaspike.services.SampleService;
 import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,7 +1,8 @@
 package com.johnreah.postgres.deltaspike;
 
+import com.johnreah.postgres.deltaspike.services.SampleService;
+
 import javax.inject.Inject;
-import javax.transaction.UserTransaction;
 import java.util.HashMap;
 import java.util.Map;
 

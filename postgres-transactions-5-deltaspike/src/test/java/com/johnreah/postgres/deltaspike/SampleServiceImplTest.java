@@ -1,5 +1,6 @@
 package com.johnreah.postgres.deltaspike;
 
+import com.johnreah.postgres.deltaspike.services.SampleService;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -7,10 +7,10 @@
 
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-        <class>com.johnreah.postgres.deltaspike.SampleEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.SampleEntity</class>
 
-        <class>com.johnreah.postgres.deltaspike.AccountTypeEntity</class>
-        <class>com.johnreah.postgres.deltaspike.AccountEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.AccountTypeEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.AccountEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -30,9 +30,9 @@
 
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-        <class>com.johnreah.postgres.deltaspike.SampleEntity</class>
-        <class>com.johnreah.postgres.deltaspike.AccountTypeEntity</class>
-        <class>com.johnreah.postgres.deltaspike.AccountEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.SampleEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.AccountTypeEntity</class>
+        <class>com.johnreah.postgres.deltaspike.entities.AccountEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

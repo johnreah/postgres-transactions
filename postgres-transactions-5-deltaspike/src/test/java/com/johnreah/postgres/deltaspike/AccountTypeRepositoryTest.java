@@ -1,12 +1,12 @@
 package com.johnreah.postgres.deltaspike;
 
+import com.johnreah.postgres.deltaspike.entities.AccountTypeEntity;
+import com.johnreah.postgres.deltaspike.repositories.AccountTypeRepository;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
-
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

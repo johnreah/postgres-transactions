@@ -1,18 +1,18 @@
 package com.johnreah.postgres.deltaspike;
 
+import com.johnreah.postgres.deltaspike.entities.AccountEntity;
+import com.johnreah.postgres.deltaspike.entities.AccountTypeEntity;
+import com.johnreah.postgres.deltaspike.repositories.AccountRepository;
+import com.johnreah.postgres.deltaspike.repositories.AccountTypeRepository;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
-
 import java.sql.Date;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
 import static org.junit.Assert.*;
 

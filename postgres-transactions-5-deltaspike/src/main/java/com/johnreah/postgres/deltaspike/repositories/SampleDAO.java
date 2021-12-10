@@ -1,5 +1,6 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.repositories;
 
+import com.johnreah.postgres.deltaspike.entities.SampleEntity;
 import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.inject.Inject;

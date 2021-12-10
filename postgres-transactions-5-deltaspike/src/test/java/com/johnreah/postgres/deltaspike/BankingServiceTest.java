@@ -1,5 +1,6 @@
 package com.johnreah.postgres.deltaspike;
 
+import com.johnreah.postgres.deltaspike.services.BankingService;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +8,8 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(CdiTestRunner.class)
 public class BankingServiceTest {

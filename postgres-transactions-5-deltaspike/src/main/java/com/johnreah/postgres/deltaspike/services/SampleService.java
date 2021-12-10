@@ -1,4 +1,4 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.services;
 
 import java.util.List;
 import java.util.Map;

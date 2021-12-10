@@ -1,11 +1,11 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.repositories;
 
+import com.johnreah.postgres.deltaspike.entities.AccountTypeEntity;
 import org.apache.deltaspike.data.api.AbstractEntityRepository;
 import org.apache.deltaspike.data.api.Query;
 import org.apache.deltaspike.data.api.Repository;
 
 import java.util.List;
-import java.util.Vector;
 
 @Repository(forEntity = AccountTypeEntity.class)
 public abstract class AccountTypeRepository extends AbstractEntityRepository<AccountTypeEntity, Long> {

@@ -1,5 +1,7 @@
-package com.johnreah.postgres.deltaspike;
+package com.johnreah.postgres.deltaspike.repositories;
 
+import com.johnreah.postgres.deltaspike.entities.AccountEntity;
+import com.johnreah.postgres.deltaspike.entities.AccountTypeEntity;
 import org.apache.deltaspike.data.api.AbstractEntityRepository;
 import org.apache.deltaspike.data.api.Repository;
 
