@@ -22,6 +22,12 @@ integration tests rather than unit tests, and they expect a running instance of
 PostgreSQL to be available. This is provided by files in the `docker` subdirectory. (An
 exception to this is the DeltaSpike project which will run in H2 as well as PostgreSQL.)
 
+I am not a Java EE guy, and the toughest challenge for me was trying to get JUnit to perform 
+tests on service and persistence classes with a JTA transaction manager in place. I wanted real
+transactional behaviour without mocks, but also without learning Arquillian (perhaps I should have). I found
+valuable guidance in [this article by Gunnar Morling](https://in.relation.to/2019/01/23/testing-cdi-beans-and-persistence-layer-under-java-se/)
+and [this example by Michael Krauter](https://github.com/mikra01/java_examples).
+
 I've tried to minimise platform dependencies, but I've only tested on a Windows 10 machine
 running a WSL2 Linux instance with Docker Desktop installed. To build and run the Docker
 image for the Postgres database:
