@@ -157,6 +157,7 @@
 
     <build>
         <plugins>
+            <!-- The static weaving plugin is left here for reference - I've been using dynamic weaving. -->
             <!--            <plugin>-->
             <!--                <artifactId>eclipselink-staticweave-maven-plugin</artifactId>-->
             <!--                <groupId>au.com.alderaan</groupId>-->
@@ -208,6 +209,7 @@
                 <configuration>
                     <!--                    <argLine>&#45;&#45;add-opens=java.base/java.lang=ALL-UNNAMED</argLine>-->
                     <argLine>
+                        <!-- TODO: this adds dynamic weaving to tests, but it's obviously not portable like this -->
                         -javaagent:/mnt/c/Users/johnreah/.m2/repository/org/eclipse/persistence/eclipselink/2.7.9/eclipselink-2.7.9.jar
                     </argLine>
                 </configuration>

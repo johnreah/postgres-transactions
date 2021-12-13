@@ -19,7 +19,8 @@ probably be more interesting to run or step through the tests one by one in an I
 
 Because this project is concerned specifically with PostgreSQL the tests are all
 integration tests rather than unit tests, and they expect a running instance of
-PostgreSQL to be available. This is provided by files in the `docker` subdirectory.
+PostgreSQL to be available. This is provided by files in the `docker` subdirectory. (An
+exception to this is the DeltaSpike project which will run in H2 as well as PostgreSQL.)
 
 I've tried to minimise platform dependencies, but I've only tested on a Windows 10 machine
 running a WSL2 Linux instance with Docker Desktop installed. To build and run the Docker
