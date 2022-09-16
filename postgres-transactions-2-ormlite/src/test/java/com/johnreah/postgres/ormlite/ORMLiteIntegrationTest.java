@@ -40,7 +40,7 @@ class ORMLiteIntegrationTest {
     }
 
     @AfterAll
-    public static void afterAll() throws SQLException, IOException {
+    public static void afterAll() throws Exception {
         TableUtils.dropTable(connectionSource, LineEntity.class, false);
         TableUtils.dropTable(connectionSource, OrderEntity.class, false);
         connectionSource.close();

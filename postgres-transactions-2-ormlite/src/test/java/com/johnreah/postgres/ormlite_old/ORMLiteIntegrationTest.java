@@ -69,7 +69,8 @@ class ORMLiteIntegrationTest {
             assertTrue(false, "We should never get here");
         } catch (SQLException e) {
             //System.out.println("In catch");
-            assertEquals("23502", e.getSQLState(), "We should have failed on a not-null constraint");
+//            assertEquals("23502", e.getSQLState(), "We should have failed on a not-null constraint"); // works for ORMLite 5.6
+            assertEquals("23502", ((SQLException)e.getCause()).getSQLState(), "We should have failed on a not-null constraint"); // Changed for ORMLite 6.1
             //e.printStackTrace();
         }
         //System.out.println("After try/catch");
@@ -138,7 +139,8 @@ class ORMLiteIntegrationTest {
             fail("We should never get here either");
         } catch (SQLException e) {
             //e.printStackTrace();
-            assertEquals("23502", e.getSQLState(), "We should have failed on a not-null constraint");
+            //assertEquals("23502", e.getSQLState(), "We should have failed on a not-null constraint"); // ok for ORMLite 5
+            assertEquals("23502", ((SQLException)e.getCause()).getSQLState(), "We should have failed on a not-null constraint"); // changed for ORMLite 6.1
             assertEquals(0, libraryDao.countOf(), "Row count should be zero after aborted transaction");
             //System.out.println("In catch");
             //libraryDao.forEach(lib -> System.out.println(String.format("Library %d: %s", lib.getLibraryId(), lib.getName())));
@@ -149,7 +151,7 @@ class ORMLiteIntegrationTest {
     }
 
     @AfterAll
-    public static void tearDown() throws SQLException, IOException {
+    public static void tearDown() throws Exception {
         TableUtils.dropTable(connectionSource, LibraryEntity.class, false);
         connectionSource.close();
     }
