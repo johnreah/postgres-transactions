@@ -8,7 +8,6 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
         <class>com.johnreah.postgres.deltaspike.entities.SampleEntity</class>
-
         <class>com.johnreah.postgres.deltaspike.entities.AccountTypeEntity</class>
         <class>com.johnreah.postgres.deltaspike.entities.AccountEntity</class>
 
@@ -19,7 +18,7 @@
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
-            <property name="eclipselink.weaving" value="true"/>
+            <property name="eclipselink.weaving" value="false"/> <!-- TODO: why? https://blogs.nologin.es/rickyepoderi/index.php?/archives/95-Weaving-Problem-in-EclipseLink.html -->
             <property name="eclipselink.weaving.lazy" value="true"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>

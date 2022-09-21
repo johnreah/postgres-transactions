@@ -16,8 +16,7 @@
     <properties>
         <eclipselink.version>2.7.9</eclipselink.version>
         <deltaspike.version>1.9.5</deltaspike.version>
-        <weld.version>3.1.8.Final</weld.version>
-        <!--        <weld.version>2.4.8.Final</weld.version>-->
+        <weld.version>3.1.9.Final</weld.version>
         <junit-platform.version>5.8.2</junit-platform.version>
     </properties>
 
@@ -149,7 +148,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.200</version>
-            <scope>test</scope>
+            <scope>runtime</scope>
         </dependency>
 
 
@@ -213,8 +212,8 @@
 <!--                        -Xmx1024m -XX:MaxPermSize=256m -javaagent:/mnt/c/Users/johnreah/.m2/repository/org/eclipse/persistence/eclipselink/2.7.9/eclipselink-2.7.9.jar-->
                         -javaagent:c:\Users\johnreah\.m2\repository\org\eclipse\persistence\eclipselink\2.7.9\eclipselink-2.7.9.jar
                     </argLine>
-                    <forkCount>3</forkCount>
-                    <reuseForks>true</reuseForks>
+<!--                    <forkCount>3</forkCount>-->
+<!--                    <reuseForks>true</reuseForks>-->
                 </configuration>
             </plugin>
             <!--
