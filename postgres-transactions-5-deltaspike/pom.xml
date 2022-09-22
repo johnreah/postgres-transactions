@@ -126,7 +126,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -203,30 +203,35 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <!--                    <argLine>&#45;&#45;add-opens=java.base/java.lang=ALL-UNNAMED</argLine>-->
-                    <argLine>
-                        <!-- TODO: this adds dynamic weaving to tests, but it's obviously not portable like this -->
-<!--                        -Xmx1024m -XX:MaxPermSize=256m -javaagent:/mnt/c/Users/johnreah/.m2/repository/org/eclipse/persistence/eclipselink/2.7.9/eclipselink-2.7.9.jar-->
-                        -javaagent:c:\Users\johnreah\.m2\repository\org\eclipse\persistence\eclipselink\2.7.9\eclipselink-2.7.9.jar
-                    </argLine>
-<!--                    <forkCount>3</forkCount>-->
-<!--                    <reuseForks>true</reuseForks>-->
-                </configuration>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-            <!--
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
                 <configuration>
-                    <forkCount>3</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                    <argLine>
+                        <!-- add-opens is required to run under Java 17 but not Java 11 -->
+                        --add-opens=java.base/java.lang=ALL-UNNAMED
+
+                        <!-- Eclipselink javaagent adds dynamic weaving to tests. Maven-dependency-plugin substitutes dependency info. -->
+                        <!-- IntelliJ doesn't seem to understand this however and requires the path to be explicit. -->
+<!--                        -javaagent:${org.eclipse.persistence:eclipselink:jar}-->
+                        <!-- -Xmx1024m -XX:MaxPermSize=256m -javaagent:/mnt/c/Users/johnreah/.m2/repository/org/eclipse/persistence/eclipselink/2.7.9/eclipselink-2.7.9.jar-->
+                        -javaagent:c:\Users\johnreah\.m2\repository\org\eclipse\persistence\eclipselink\2.7.9\eclipselink-2.7.9.jar
+                    </argLine>
+                    <forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/> <!-- Activate the use of TCP to transmit events to the plugin. Avoids "corrupted STDOUT by directly writing to native stream in forked JVM" -->
                 </configuration>
             </plugin>
-            -->
 
         </plugins>
     </build>

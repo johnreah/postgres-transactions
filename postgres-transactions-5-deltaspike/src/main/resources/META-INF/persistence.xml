@@ -18,7 +18,7 @@
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
-            <property name="eclipselink.weaving" value="false"/> <!-- TODO: why? https://blogs.nologin.es/rickyepoderi/index.php?/archives/95-Weaving-Problem-in-EclipseLink.html -->
+            <property name="eclipselink.weaving" value="true"/> <!-- requires eclipselink as javaagent, passed as VM argument -->
             <property name="eclipselink.weaving.lazy" value="true"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
@@ -40,7 +40,7 @@
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
 
-            <property name="eclipselink.weaving" value="true"/>
+            <property name="eclipselink.weaving" value="true"/> <!-- requires eclipselink as javaagent, set in maven-surefire-plugin config -->
             <property name="eclipselink.weaving.lazy" value="true"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
