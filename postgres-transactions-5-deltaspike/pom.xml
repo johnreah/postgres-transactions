@@ -224,10 +224,10 @@
                         --add-opens=java.base/java.lang=ALL-UNNAMED
 
                         <!-- Eclipselink javaagent adds dynamic weaving to tests. Maven-dependency-plugin substitutes dependency info. -->
-                        <!-- IntelliJ doesn't seem to understand this however and requires the path to be explicit. -->
-<!--                        -javaagent:${org.eclipse.persistence:eclipselink:jar}-->
+                        <!-- IntelliJ doesn't seem to understand this however and requires the path to be explicit, either here or in the run configuration. -->
+                        -javaagent:${org.eclipse.persistence:eclipselink:jar}
                         <!-- -Xmx1024m -XX:MaxPermSize=256m -javaagent:/mnt/c/Users/johnreah/.m2/repository/org/eclipse/persistence/eclipselink/2.7.9/eclipselink-2.7.9.jar-->
-                        -javaagent:c:\Users\johnreah\.m2\repository\org\eclipse\persistence\eclipselink\2.7.9\eclipselink-2.7.9.jar
+                        <!-- -javaagent:c:\Users\johnreah\.m2\repository\org\eclipse\persistence\eclipselink\2.7.9\eclipselink-2.7.9.jar-->
                     </argLine>
                     <forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/> <!-- Activate the use of TCP to transmit events to the plugin. Avoids "corrupted STDOUT by directly writing to native stream in forked JVM" -->
                 </configuration>
