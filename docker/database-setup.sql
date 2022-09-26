@@ -14,3 +14,5 @@ create database postgres_transactions_spring;
 create database postgres_transactions_cdi;
 
 create database postgres_transactions_deltaspike;
+
+create database postgres_transactions_spring_data_jdbc;

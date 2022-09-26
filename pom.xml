@@ -18,6 +18,7 @@
         <module>postgres-transactions-4-cdi</module>
         <module>postgres-transactions-4a-cdi-jta-helper</module>
         <module>postgres-transactions-5-deltaspike</module>
+        <module>postgres-transactions-6-spring-data-jdbc</module>
     </modules>
 
     <properties>
