@@ -1,0 +1,27 @@
+===============================================================================
+utel/postgres-fastlight2-preload docker container
+john.reah@utel.co.uk
+===============================================================================
+
+This directory contains tools for building a faster-loading version of the
+postgres-fastlight2 docker container.
+
+The existing image at docker.utel.co.uk/utel/postgres-fastlight2 contains the
+day1 SQL scripts from Subversion, which are executed on the container's first
+run. There is no problem with this approach, other than that it takes several
+minutes to execute. This is fine for test environments where a container may
+be created once and re-used many times, but is inconvenient for use-cases that
+require multiple instances of a fresh database running in a Postgres server and
+with both schema and data in a known controlled state.
+
+The use case under consideration here is integration testing carried out in a
+developer's workflow under the control of JUnit, using TestContainers to
+provide a representative environment that is more accurate than can be achieved
+with in-memory alternatives such as H2 or HSQLDB.
+
+The implementation here comprises 2 phases:
+1) Create a fresh container and database from the day1 scripts using the
+   existing image, and pg_dump the database to a binary file.
+2) Create a new image that creates an empty database and pg_restores if from
+   the binary data. This runs in about 5 seconds.
+
