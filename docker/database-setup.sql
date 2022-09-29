@@ -16,3 +16,6 @@ create database postgres_transactions_cdi;
 create database postgres_transactions_deltaspike;
 
 create database postgres_transactions_spring_data_jdbc;
+\c postgres_transactions_spring_data_jdbc
+\i /docker-entrypoint-initdb.d/postgres-transactions-spring-data-jdbc.sql
+\i /docker-entrypoint-initdb.d/postgres-transactions-spring-data-jdbc-testdata.sql
