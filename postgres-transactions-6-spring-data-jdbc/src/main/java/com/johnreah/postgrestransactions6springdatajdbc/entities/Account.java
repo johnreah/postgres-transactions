@@ -1,14 +1,17 @@
 package com.johnreah.postgrestransactions6springdatajdbc.entities;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@AllArgsConstructor
+@Builder
 public class Account {
 
     @Id
@@ -18,6 +21,14 @@ public class Account {
     private double balance;
     private OffsetDateTime balanceTimestamp;
     private String reference;
-    private long accountTypeId;
 
+    AggregateReference<Account, Long> accountTypeId;
+
+    @Builder.Default
+    @MappedCollection(idColumn = "account_id")
+    Set<AccountHistory> accountHistories = new HashSet<>();
+
+    @Builder.Default
+    @MappedCollection(idColumn = "account_id")
+    Set<LinkCustomerAccount> linkCustomerAccounts = new HashSet<>();
 }

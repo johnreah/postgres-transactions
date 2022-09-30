@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
@@ -29,7 +30,13 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 		Customer customer = bankingService.findCustomerByReference("TEST_CUSTOMER_01");
 		log.debug(String.format("Customer %d: %s", customer.getId(), customer.toString()));
 
-		Account newAccount = new Account(0, "desc", 0.0, OffsetDateTime.now(), "ref", 2);
+		Account newAccount = Account.builder()
+				.description("desc")
+				.balance(0.0)
+				.balanceTimestamp(OffsetDateTime.now())
+				.reference("ref")
+				.accountTypeId(AggregateReference.to(2L))
+				.build();
 		bankingService.getAccountRepository().save(newAccount);
 		bankingService.getAllAccounts().stream().forEach(a -> log.debug(String.format("Account %d: %s", a.getId(), a.toString())));
 	}
