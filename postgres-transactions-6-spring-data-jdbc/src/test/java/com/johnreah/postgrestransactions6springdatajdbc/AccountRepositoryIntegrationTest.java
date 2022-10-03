@@ -6,6 +6,8 @@ import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountType;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountTypeRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.support.AbstractIntegrationTest;
+import com.johnreah.postgrestransactions6springdatajdbc.support.DatabaseUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,39 +28,52 @@ public class AccountRepositoryIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     AccountTypeRepository accountTypeRepository;
 
+    @Autowired
+    DatabaseUtils databaseUtils;
+
+    @BeforeEach
+    public void beforeEach() {
+        databaseUtils.deleteEverything();
+    }
+
     @Test
     public void testPersistence() {
-        AccountType accountType = accountTypeRepository.findByIdNotNull().get(0);
-        assertTrue(accountType != null, "Need an account type");
+        AccountType accountType = AccountType.builder()
+                .description("Test account type")
+                .reference("TEST_REF")
+                .build();
+        accountType = accountTypeRepository.save(accountType);
+        assertTrue(accountType != null && accountType.getId() != 0, "AccountType should have saved");
 
         Account account = Account.builder()
-                .description(UUID.randomUUID().toString())
+                .description("Test account")
                 .accountTypeId(AggregateReference.to(accountType.getId()))
                 .build();
 
-        long countBefore = accountRepository.count();
+        long countBeforeSave = accountRepository.count();
         long id = accountRepository.save(account).getId();
-        long countAfter = accountRepository.count();
         assertTrue(id != 0, "ID should be non-zero after save");
-        assertTrue(countAfter == countBefore + 1, "Count should have incremented by 1");
+        long countAfterSave = accountRepository.count();
+        assertTrue(countAfterSave == countBeforeSave + 1, "Count should have incremented by 1");
 
         AccountHistory accountHistory1 = AccountHistory.builder()
-                .description("one")
+                .description("Test account history one")
                 .build();
         AccountHistory accountHistory2 = AccountHistory.builder()
-                .description("two")
+                .description("Test account history two")
                 .build();
         AccountHistory accountHistory3 = AccountHistory.builder()
-                .description("three")
+                .description("Test account history three")
                 .build();
         account.getAccountHistories().add(accountHistory1);
         account.getAccountHistories().add(accountHistory2);
         account.getAccountHistories().add(accountHistory3);
         accountRepository.save(account);
-        assertTrue(accountRepository.count() == countAfter, "Update should keep count the same");
+        long countAfterUpdate = accountRepository.count();
+        assertTrue(countAfterUpdate == countAfterSave, "Update should keep count the same");
 
-        Optional<Account> reloaded = accountRepository.findById(id);
-        assertTrue(reloaded.isPresent() && reloaded.get().getAccountHistories().size() == 3, "All history records should have persisted");
+        Optional<Account> accountReloaded = accountRepository.findById(id);
+        assertTrue(accountReloaded.isPresent() && accountReloaded.get().getAccountHistories().size() == 3, "All history records should have persisted");
     }
 
 }

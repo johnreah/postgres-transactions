@@ -3,6 +3,7 @@ package com.johnreah.postgrestransactions6springdatajdbc;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.Customer;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.CustomerRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.support.AbstractIntegrationTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,11 @@ class App6Tests extends AbstractIntegrationTest {
 
 	@Autowired
 	CustomerRepository customerRepository;
+
+	@BeforeEach
+	public void beforeEach() {
+
+	}
 
 	@Test
 	void contextLoads() {

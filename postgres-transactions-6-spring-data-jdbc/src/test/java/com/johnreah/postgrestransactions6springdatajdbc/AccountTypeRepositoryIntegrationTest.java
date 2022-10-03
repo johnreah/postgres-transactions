@@ -3,6 +3,8 @@ package com.johnreah.postgrestransactions6springdatajdbc;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountType;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountTypeRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.support.AbstractIntegrationTest;
+import com.johnreah.postgrestransactions6springdatajdbc.support.DatabaseUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,9 @@ public class AccountTypeRepositoryIntegrationTest extends AbstractIntegrationTes
     @Autowired
     private AccountTypeRepository accountTypeRepository;
 
+    @Autowired
+    private DatabaseUtils databaseUtils;
+
     @Test
     public void testPersistence() {
         long countBefore = accountTypeRepository.count();
@@ -32,4 +37,8 @@ public class AccountTypeRepositoryIntegrationTest extends AbstractIntegrationTes
         assertTrue(countAfter == countBefore + 1, "Count should have incremented by 1");
     }
 
+    @BeforeEach
+    public void beforeEach() {
+        databaseUtils.deleteEverything();
+    }
 }

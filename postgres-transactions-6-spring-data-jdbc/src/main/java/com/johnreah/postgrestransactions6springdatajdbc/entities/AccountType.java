@@ -18,6 +18,4 @@ public class AccountType {
     private String description;
     private String reference;
 
-//    @MappedCollection(idColumn = "account_type_id")
-//    Set<Account> accounts = new HashSet<>();
 }

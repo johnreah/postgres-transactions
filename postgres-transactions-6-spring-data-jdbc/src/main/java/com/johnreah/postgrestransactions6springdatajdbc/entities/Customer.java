@@ -20,6 +20,7 @@ public class Customer {
     private String email;
     private String reference;
 
+    @Builder.Default
     @MappedCollection(idColumn = "customer_id")
     Set<LinkCustomerAccount> linkCustomerAccounts = new HashSet<>();
 }

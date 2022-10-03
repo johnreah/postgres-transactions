@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 @Builder
 public class AccountHistory {
 
-    private AggregateReference<Account, Long> accountId;
     private OffsetDateTime timeStamp;
     private double account;
     private double balance;
