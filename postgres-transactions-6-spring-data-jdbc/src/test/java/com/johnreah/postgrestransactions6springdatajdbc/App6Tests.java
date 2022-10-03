@@ -26,7 +26,7 @@ class App6Tests extends AbstractIntegrationTest {
 
 	@Test
 	void testContainerRuns() throws InterruptedException {
-		assertTrue(postgresContainer.isRunning());
+		assertTrue(postgreSQLContainer.isRunning());
 	}
 
 	@Test
