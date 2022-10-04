@@ -3,6 +3,7 @@ package com.johnreah.postgrestransactions6springdatajdbc;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.Account;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountHistory;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountType;
+import com.johnreah.postgrestransactions6springdatajdbc.entities.Customer;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountTypeRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.support.AbstractIntegrationTest;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -74,6 +76,20 @@ public class AccountRepositoryIntegrationTest extends AbstractIntegrationTest {
 
         Optional<Account> accountReloaded = accountRepository.findById(id);
         assertTrue(accountReloaded.isPresent() && accountReloaded.get().getAccountHistories().size() == 3, "All history records should have persisted");
+    }
+
+    @Test
+    public void createAndDeleteMultiple() {
+        AccountType accountType = databaseUtils.createRandomAccountType();
+        Account account1 = databaseUtils.createRandomAccount(accountType);
+        Account account2 = databaseUtils.createRandomAccount(accountType);
+        Account account3 = databaseUtils.createRandomAccount(accountType);
+        accountRepository.saveAll(List.of(account1, account2, account3));
+        assertTrue(accountRepository.count() == 3);
+
+//        accountRepository.deleteAll(); // this won't trigger the pre-delete callbacks
+        accountRepository.findAll().forEach(a -> accountRepository.delete(a)); // this one will
+        assertTrue(accountRepository.count() == 0, "Accounts should all be gone");
     }
 
 }

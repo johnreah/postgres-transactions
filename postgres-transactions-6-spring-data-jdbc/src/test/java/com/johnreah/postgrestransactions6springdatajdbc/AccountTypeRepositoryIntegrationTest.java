@@ -24,6 +24,11 @@ public class AccountTypeRepositoryIntegrationTest extends AbstractIntegrationTes
     @Autowired
     private DatabaseUtils databaseUtils;
 
+    @BeforeEach
+    public void beforeEach() {
+        databaseUtils.deleteEverything();
+    }
+
     @Test
     public void testPersistence() {
         long countBefore = accountTypeRepository.count();
@@ -35,10 +40,5 @@ public class AccountTypeRepositoryIntegrationTest extends AbstractIntegrationTes
         long countAfter = accountTypeRepository.count();
         log.debug(String.format("Count before = %d, count after = %d", countBefore, countAfter));
         assertTrue(countAfter == countBefore + 1, "Count should have incremented by 1");
-    }
-
-    @BeforeEach
-    public void beforeEach() {
-        databaseUtils.deleteEverything();
     }
 }

@@ -7,9 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long>, CustomerRepositoryCustom {
 
     List<Customer> findByIdNotNull();
 
     Customer findByReference(String reference);
+
 }

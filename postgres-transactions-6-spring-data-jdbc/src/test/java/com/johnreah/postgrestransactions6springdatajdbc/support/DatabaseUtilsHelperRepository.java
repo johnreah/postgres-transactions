@@ -29,4 +29,6 @@ public interface DatabaseUtilsHelperRepository extends CrudRepository<Account, L
     @Query("delete from account_type")
     public void deleteAccountType();
 
+    @Query("select count(*) from link_customer_account")
+    public long countLinkCustomerAccounts();
 }
