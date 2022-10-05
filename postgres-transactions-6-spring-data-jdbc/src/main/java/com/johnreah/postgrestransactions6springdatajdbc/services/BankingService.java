@@ -4,25 +4,21 @@ import com.johnreah.postgrestransactions6springdatajdbc.entities.Account;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.Customer;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.CustomerRepository;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 @Service
 @Transactional
 public class BankingService {
 
     @Autowired
-    @Getter
     private CustomerRepository customerRepository;
 
     @Autowired
-    @Getter
     private AccountRepository accountRepository;
 
     public long countAllCustomers() {
@@ -39,6 +35,10 @@ public class BankingService {
 
     public List<Account> getAllAccounts() {
         return accountRepository.findByIdNotNull();
+    }
+
+    public void save(Account account) {
+        accountRepository.save(account);
     }
 
     public Customer findCustomerByReference(String reference) {

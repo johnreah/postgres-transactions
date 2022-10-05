@@ -37,7 +37,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 				.reference("ref")
 				.accountTypeId(AggregateReference.to(2L))
 				.build();
-		bankingService.getAccountRepository().save(newAccount);
+		bankingService.save(newAccount);
 		bankingService.getAllAccounts().stream().forEach(a -> log.debug(String.format("Account %d: %s", a.getId(), a.toString())));
 	}
 

@@ -3,7 +3,6 @@ package com.johnreah.postgrestransactions6springdatajdbc.entities;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.HashSet;
