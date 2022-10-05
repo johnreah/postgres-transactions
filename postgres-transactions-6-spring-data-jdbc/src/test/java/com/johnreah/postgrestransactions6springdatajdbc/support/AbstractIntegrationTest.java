@@ -1,5 +1,7 @@
 package com.johnreah.postgrestransactions6springdatajdbc.support;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -33,6 +35,14 @@ public abstract class AbstractIntegrationTest {
 		registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
 		registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
 		registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
+	}
+
+	@Autowired
+	protected DatabaseUtils databaseUtils;
+
+	@BeforeEach
+	public void beforeEach() {
+		databaseUtils.deleteEverything();
 	}
 
 }

@@ -3,12 +3,9 @@ package com.johnreah.postgrestransactions6springdatajdbc;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.Account;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountHistory;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountType;
-import com.johnreah.postgrestransactions6springdatajdbc.entities.Customer;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountTypeRepository;
 import com.johnreah.postgrestransactions6springdatajdbc.support.AbstractIntegrationTest;
-import com.johnreah.postgrestransactions6springdatajdbc.support.DatabaseUtils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,14 +26,6 @@ public class AccountRepositoryIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
     AccountTypeRepository accountTypeRepository;
-
-    @Autowired
-    DatabaseUtils databaseUtils;
-
-    @BeforeEach
-    public void beforeEach() {
-        databaseUtils.deleteEverything();
-    }
 
     @Test
     public void testPersistence() {
@@ -80,10 +69,10 @@ public class AccountRepositoryIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void createAndDeleteMultiple() {
-        AccountType accountType = databaseUtils.createRandomAccountType();
-        Account account1 = databaseUtils.createRandomAccount(accountType);
-        Account account2 = databaseUtils.createRandomAccount(accountType);
-        Account account3 = databaseUtils.createRandomAccount(accountType);
+        AccountType accountType = databaseUtils.createAndSaveRandomAccountType();
+        Account account1 = databaseUtils.createAndSaveRandomAccount(accountType);
+        Account account2 = databaseUtils.createAndSaveRandomAccount(accountType);
+        Account account3 = databaseUtils.createAndSaveRandomAccount(accountType);
         accountRepository.saveAll(List.of(account1, account2, account3));
         assertTrue(accountRepository.count() == 3);
 

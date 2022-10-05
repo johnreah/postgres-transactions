@@ -1,6 +1,5 @@
 package com.johnreah.postgrestransactions6springdatajdbc.support;
 
-import com.johnreah.postgrestransactions6springdatajdbc.CustomerRepositoryIntegrationTest;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.Account;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountHistory;
 import com.johnreah.postgrestransactions6springdatajdbc.entities.AccountType;
@@ -10,7 +9,6 @@ import com.johnreah.postgrestransactions6springdatajdbc.repositories.AccountType
 import com.johnreah.postgrestransactions6springdatajdbc.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
@@ -39,7 +37,7 @@ public class DatabaseUtils {
         databaseUtilsHelperRepository.deleteAccountType();
     }
 
-    public AccountType createRandomAccountType() {
+    public AccountType createAndSaveRandomAccountType() {
         AccountType accountType = AccountType.builder()
                 .description("Test account type")
                 .reference(UUID.randomUUID().toString())
@@ -47,7 +45,7 @@ public class DatabaseUtils {
         return accountTypeRepository.save(accountType);
     }
 
-    public Account createRandomAccount(AccountType accountType) {
+    public Account createAndSaveRandomAccount(AccountType accountType) {
         Account account = Account.builder()
                 .description("Test account")
                 .accountTypeId(AggregateReference.to(accountType.getId()))
@@ -61,7 +59,7 @@ public class DatabaseUtils {
         return accountRepository.save(account);
     }
 
-    public Customer createRandomCustomer() {
+    public Customer createAndSaveRandomCustomer() {
         Customer customer = Customer.builder()
                 .firstName("Test")
                 .lastName("Customer")

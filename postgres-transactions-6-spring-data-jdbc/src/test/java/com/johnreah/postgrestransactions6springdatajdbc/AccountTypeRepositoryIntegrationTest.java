@@ -21,14 +21,6 @@ public class AccountTypeRepositoryIntegrationTest extends AbstractIntegrationTes
     @Autowired
     private AccountTypeRepository accountTypeRepository;
 
-    @Autowired
-    private DatabaseUtils databaseUtils;
-
-    @BeforeEach
-    public void beforeEach() {
-        databaseUtils.deleteEverything();
-    }
-
     @Test
     public void testPersistence() {
         long countBefore = accountTypeRepository.count();
