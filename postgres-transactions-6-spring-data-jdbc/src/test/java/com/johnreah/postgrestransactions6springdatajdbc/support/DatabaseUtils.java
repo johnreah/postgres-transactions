@@ -72,4 +72,16 @@ public class DatabaseUtils {
         return databaseUtilsHelperRepository.countLinkCustomerAccounts();
     }
 
+    public void setAccountHistoryDescriptionNotNull() {
+        databaseUtilsHelperRepository.setAccountHistoryDescriptionNotNull();
+    }
+
+    public void dropAccountHistoryDescriptionNotNull() {
+        databaseUtilsHelperRepository.dropAccountHistoryDescriptionNotNull();
+    }
+
+    public long countAccountHistories() {
+        return databaseUtilsHelperRepository.countAccountHistories();
+    }
+
 }

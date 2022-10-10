@@ -31,4 +31,15 @@ public interface DatabaseUtilsHelperRepository extends CrudRepository<Account, L
 
     @Query("select count(*) from link_customer_account")
     public long countLinkCustomerAccounts();
+
+    @Query("select count(*) from account_history")
+    public long countAccountHistories();
+
+    @Modifying
+    @Query("alter table account_history alter column description set not null")
+    public void setAccountHistoryDescriptionNotNull();
+
+    @Modifying
+    @Query("alter table account_history alter column description drop not null")
+    public void dropAccountHistoryDescriptionNotNull();
 }
